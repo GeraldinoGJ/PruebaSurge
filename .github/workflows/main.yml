@@ -1,0 +1,20 @@
+name: PruebaSurge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar Surge
+        run: npm install --global surge
+
+      - name: Deploy a Surge
+        run: surge ./ jeremy20242517.surge.sh --token ${{ secrets.SURGE_TOKEN }}
